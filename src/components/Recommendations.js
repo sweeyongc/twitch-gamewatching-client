@@ -31,7 +31,6 @@ const renderCardTitle = (item, loggedIn, favs, favOnChange) => {
         .catch((err) => {
           message.error(err.message);
         });
-
       return;
     }
 
@@ -72,9 +71,9 @@ const renderCardGrid = (data, loggedIn, favs, favOnChange) => {
       grid={{
         xs: 1,
         sm: 2,
-        md: 4,
+        md: 2,
         lg: 4,
-        xl: 6,
+        xl: 4,
       }}
       dataSource={data}
       renderItem={(item) => (
@@ -90,7 +89,12 @@ const renderCardGrid = (data, loggedIn, favs, favOnChange) => {
   );
 };
 
-const Home = ({ resources, loggedIn, favoriteItems, favoriteOnChange }) => {
+const Recommendations = ({
+  resources,
+  loggedIn,
+  favoriteItems,
+  favoriteOnChange,
+}) => {
   const { VIDEO, STREAM, CLIP } = resources;
   const {
     VIDEO: favVideos,
@@ -128,4 +132,4 @@ const Home = ({ resources, loggedIn, favoriteItems, favoriteOnChange }) => {
   );
 };
 
-export default Home;
+export default Recommendations;

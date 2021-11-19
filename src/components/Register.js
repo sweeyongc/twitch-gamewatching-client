@@ -1,42 +1,44 @@
-import { Button, Form, Input, message, Modal } from 'antd';
-import React from 'react';
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { register } from '../utils';
- 
+import { Button, Form, Input, message, Modal } from "antd";
+import React from "react";
+import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { register } from "../utils";
+
 class Register extends React.Component {
   state = {
-    displayModal: false
-  }
- 
+    displayModal: false,
+  };
+
   handleCancel = () => {
     this.setState({
       displayModal: false,
-    })
-  }
- 
+    });
+  };
+
   signupOnClick = () => {
     this.setState({
       displayModal: true,
-    })
-  }
- 
+    });
+  };
+
   onFinish = (data) => {
     register(data)
       .then(() => {
         this.setState({
           displayModal: false,
-        })
+        });
         message.success(`Successfully signed up`);
-      }).catch((err) => {
-        message.error(err.message);
       })
-  }
- 
+      .catch((err) => {
+        message.error(err.message);
+      });
+  };
+
   render = () => {
     return (
       <>
         <Button shape="round" type="primary" onClick={this.signupOnClick}>
-          Register</Button>
+          Register
+        </Button>
         <Modal
           title="Register"
           visible={this.state.displayModal}
@@ -52,45 +54,47 @@ class Register extends React.Component {
           >
             <Form.Item
               name="user_id"
-              rules={[{ required: true, message: 'Please input your Username!' }]}
+              rules={[
+                { required: true, message: "Please input your Username!" },
+              ]}
             >
               <Input prefix={<UserOutlined />} placeholder="Username" />
             </Form.Item>
             <Form.Item
               name="password"
-              rules={[{ required: true, message: 'Please input your Password!' }]}
+              rules={[
+                { required: true, message: "Please input your Password!" },
+              ]}
             >
-              <Input
-                prefix={<LockOutlined />}
-                placeholder="Password"
-              />
+              <Input prefix={<LockOutlined />} placeholder="Password" />
             </Form.Item>
             <Form.Item
               name="first_name"
-              rules={[{ required: true, message: 'Please input your Firstname!' }]}
+              rules={[
+                { required: true, message: "Please input your Firstname!" },
+              ]}
             >
-              <Input
-                placeholder="firstname"
-              />
+              <Input placeholder="firstname" />
             </Form.Item>
             <Form.Item
               name="last_name"
-              rules={[{ required: true, message: 'Please input your Lastname!' }]}
+              rules={[
+                { required: true, message: "Please input your Lastname!" },
+              ]}
             >
-              <Input
-                placeholder="lastname"
-              />
+              <Input placeholder="lastname" />
             </Form.Item>
- 
+
             <Form.Item>
               <Button type="primary" htmlType="submit">
-                Register</Button>
+                Register
+              </Button>
             </Form.Item>
           </Form>
         </Modal>
       </>
-    )
-  }
+    );
+  };
 }
- 
+
 export default Register;
